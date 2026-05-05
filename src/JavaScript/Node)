@@ -1,0 +1,23 @@
+// Exemplo de como estruturar a mensagem
+const nomeCliente = "Bea (Diretora)"; 
+const contatoCliente = "(11) 99999-9999";
+const enderecoCliente = "Rua Exemplo, 123 - Bairro Centro";
+
+function gerarMensagemPedido(carrinho, total) {
+    let mensagem = `*PEDIDO PIZZA JÁ*\n\n`;
+
+    // Informações do Cliente
+    mensagem += `👤 *Cliente:* ${nomeCliente}\n`;
+    mensagem += `📞 *Contato:* ${contatoCliente}\n`;
+    mensagem += `📍 *Endereço:* ${enderecoCliente}\n`;
+    mensagem += `----------------------------\n\n`;
+
+    // Itens do Pedido
+    carrinho.forEach(item => {
+        mensagem += `*${item.quantidade}x* ${item.nome} (R$ ${item.preco.toFixed(2)})\n`;
+    });
+
+    mensagem += `\n*TOTAL: R$ ${total.toFixed(2)}*`;
+
+    return encodeURIComponent(mensagem); // Para usar no link do WhatsApp
+}
